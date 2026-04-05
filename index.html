@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinTrack - Finance Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <i class="fas fa-wallet"></i>
+        <h2>FinTrack</h2>
+      </div>
+      <nav>
+        <ul>
+          <li class="active"><i class="fas fa-home"></i> Dashboard</li>
+          <li><i class="fas fa-list"></i> Transactions</li>
+          <li><i class="fas fa-chart-pie"></i> Insights</li>
+          <li><i class="fas fa-cog"></i> Settings</li>
+        </ul>
+      </nav>
+
+      <!-- Role Switcher -->
+      <div class="role-switcher">
+        <label>Role:</label>
+        <select id="role-select">
+          <option value="viewer">Viewer</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header>
+        <div class="header-left">
+          <h1>hello, Varsha 👋</h1>
+        </div>
+        <div class="header-right">
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" placeholder="Search transactions...">
+          </div>
+          <div class="user-info">
+            <!-- Fixed Avatar: Small, Perfect Circle -->
+            <img src="images.jpg" 
+                 alt="Varsha Sharma" 
+                 class="avatar">
+            <span>Varsha Sharma</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Rest of your code remains exactly the same -->
+      <!-- Summary Cards -->
+      <section class="summary-cards">
+        <div class="card">
+          <div class="card-icon"><i class="fas fa-wallet"></i></div>
+          <div>
+            <p>Total Balance</p>
+            <h2 id="total-balance">₹1,24,850</h2>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon income"><i class="fas fa-arrow-up"></i></div>
+          <div>
+            <p>Income</p>
+            <h2 id="total-income">₹2,45,600</h2>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon expense"><i class="fas fa-arrow-down"></i></div>
+          <div>
+            <p>Expenses</p>
+            <h2 id="total-expense">₹1,20,750</h2>
+          </div>
+        </div>
+      </section>
+
+      <!-- Charts Section -->
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3>Balance Trend (Last 6 Months)</h3>
+          <canvas id="balanceChart" height="180"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <h3>Spending by Category</h3>
+          <canvas id="spendingChart" height="180"></canvas>
+        </div>
+      </div>
+
+      <!-- Transactions Section -->
+      <section class="transactions-section">
+        <div class="section-header">
+          <h2>Recent Transactions</h2>
+          <div class="controls">
+            <select id="filter-category">
+              <option value="all">All Categories</option>
+            </select>
+            <button id="add-btn" class="btn-primary">
+              <i class="fas fa-plus"></i> Add Transaction
+            </button>
+          </div>
+        </div>
+
+        <table id="transactions-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>Type</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="transactions-body"></tbody>
+        </table>
+      </section>
+
+      <!-- Insights -->
+      <section class="insights">
+        <h2>Smart Insights</h2>
+        <div class="insights-grid">
+          <div class="insight-card">
+            <i class="fas fa-fire"></i>
+            <div>
+              <strong>Highest Spending</strong>
+              <p id="highest-category">Food & Dining - ₹28,450</p>
+            </div>
+          </div>
+          <div class="insight-card">
+            <i class="fas fa-calendar"></i>
+            <div>
+              <strong>This Month</strong>
+              <p id="monthly-comparison">₹12,340 less than last month</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Add/Edit Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h3 id="modal-title">Add New Transaction</h3>
+      <form id="transaction-form">
+        <input type="date" id="trans-date" required>
+        <input type="text" id="trans-desc" placeholder="Description" required>
+        <select id="trans-category" required></select>
+        <input type="number" id="trans-amount" placeholder="Amount" required>
+        <select id="trans-type" required>
+          <option value="expense">Expense</option>
+          <option value="income">Income</option>
+        </select>
+        <div class="modal-buttons">
+          <button type="button" id="cancel-btn" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
